@@ -1,0 +1,15 @@
+from datetime import date, datetime
+
+def getVersion():
+    return "0.0.1"
+
+def json_serial(obj):
+    """JSON serializer for objects not serializable by default json code"""
+
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    raise TypeError ("Type %s not serializable" % type(obj))
+
+def generateSequence():
+    import random
+    return ''.join(random.choice("1234") for _ in range(10))

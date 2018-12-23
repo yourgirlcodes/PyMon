@@ -1,0 +1,19 @@
+{% extends "./pages/base.html" %}
+{% block title %} Available Games{% endblock %}
+{% block head %} 
+{% endblock %}
+{% block app %}
+
+<h1 > Available Games</h1>
+{% for g in games %}
+    <a href="/games/{{g.id}}">{{g.name}}</a>
+{% else %}
+    No available games :(
+{% endfor %}
+
+<form method="POST" action="/games">
+    <h3>New Game</h3>
+    <label>Name:<input type="text" name="name"></label>
+    <input type="submit" value="Create" />
+</form>
+{% endblock %}

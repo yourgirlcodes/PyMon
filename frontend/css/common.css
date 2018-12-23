@@ -1,0 +1,81 @@
+html, body{
+    margin:0px;
+    font-family:Arial;
+    overflow: hidden;
+}
+
+a{
+    color:darkorange;
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+    padding:0px;
+    margin:0px;
+}
+
+[onclick], .clickable{
+    cursor: pointer;
+}
+
+.shadowed{
+    -webkit-box-shadow: 10px 10px 35px -13px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 35px -13px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 35px -13px rgba(0,0,0,0.75);
+}
+
+button{
+    border:none;
+    padding:20px 20px;
+    border-radius: 20px;
+    outline:none;
+}
+
+button.yellow{
+    background-color:yellow;
+}
+
+button.red{
+    background-color:red;
+}
+
+button.blue{
+    background-color:blue;
+}
+
+button.green{
+    background-color:green;
+}
+
+.simon button{
+    box-sizing: border-box;
+}
+
+.simon button.active{
+    border:3px solid black;
+}
+
+.game-status .status-text, .join-form{
+    display:none;
+}
+
+[data-status="open"] .join-form{
+    display:inline-block;
+}
+
+[data-status="loading"] .status-text.loading{
+    display: inline;
+}
+
+[data-status="on"] .status-text.on{
+    display: inline;
+}
+
+[data-status="open"] .status-text.open{
+    display: inline;
+}
+
+[data-status="over"] .status-text.over{
+    display: inline;
+}

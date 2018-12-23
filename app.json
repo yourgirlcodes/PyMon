@@ -1,0 +1,10 @@
+{
+    "name": "Pymon",
+    "description": "Multiplayer Simon Game",
+    "buildpacks": [
+        {
+          "url": "heroku/python"
+        }
+      ],
+    "keywords": ["python", "simon" ," react" ]
+  }

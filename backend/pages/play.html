@@ -1,0 +1,30 @@
+{% extends "./pages/base.html" %}
+{% block title %} Simon {% endblock %}
+{% block head %} 
+<script src="/js/play.js"></script>
+{% endblock %}
+{% block app %}
+<main id="game" data-status="loading">
+<h1 >{{game.name}}</h1>
+<div class="game-status">
+    <span class="status-text loading">Loading...</span>
+    <span class="status-text open">Waiting for players to join</span>
+    <span class="status-text on">Game is on</span>
+    <span class="status-text over">Game Over</span>
+</div>
+<button class="red"></button>
+<button class="green"></button>
+<button class="blue"></button>
+<button class="yellow"></button>
+<div class="join-form">
+    <label>Name<input type="text" id="name"></label>
+    <button onclick="join()">Join</button>
+</div>
+<div class="players">
+    <h2>Current Players</h2>
+    {% for p in players %}
+        {{p.name}}
+    {% endfor %}
+</div>
+</main>
+{% endblock %}
