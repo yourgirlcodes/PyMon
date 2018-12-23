@@ -23,17 +23,12 @@ def img(filepath):
 
 @get('/favicon.ico')
 def get_favicon():
-    return static_file('favicon.ico', root='../')
+    return static_file('favicon.ico', root='./')
 
 @get("/sounds/<filepath:re:.*\.mp3>")
 def mp3(filepath):
     return static_file(filepath, root="./frontend/sounds")
 
-
-@get('/editor')
-@jinja2_view('./pages/editor.html')
-def editor():
-    return {"version" : utils.getVersion()}
 
 @get('/games/<game_id>')
 @jinja2_view('./backend/pages/game.html')
@@ -90,7 +85,7 @@ def create():
     redirect("/games")
 
 @get('/games')
-@jinja2_view('./pages/games.html')
+@jinja2_view('./backend/pages/games.html')
 def games():
     currentPlayer = request.get_cookie("player")
     if not currentPlayer:
@@ -100,7 +95,7 @@ def games():
 
 
 @get('/start')
-@jinja2_view('./pages/start.html')
+@jinja2_view('./backend/pages/start.html')
 def start():
     return {"version" : utils.getVersion()}
 
@@ -110,7 +105,7 @@ def game(game_id):
     return {"version" : utils.getVersion()}
 
 @get('/')
-@jinja2_view('./pages/index.html')
+@jinja2_view('./backend/pages/index.html')
 def landing():
     return {"version" : utils.getVersion()}
 
