@@ -94,13 +94,16 @@ def playerReady(game_id, player_id):
 def correctTurn(game_id, playerName, newStep):
     try:
         with connection.cursor() as cursor:
+            print("here1")
             sql = "UPDATE game SET step = '{}' WHERE id = '{}'".format(newStep, game_id) 
             cursor.execute(sql)
-            nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = {} AND created < (SELECT created FROM playergame WHERE status='turn' AND game = {}) LIMIT 1".format(game_id,game_id))
+            print("here2")
+            nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = {} AND status <> 'failed' AND created < (SELECT created FROM playergame WHERE status='turn' AND game = {}) LIMIT 1".format(game_id,game_id))
             if not nextPlayerQuery:
-                nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = '{}' ORDER BY created DESC LIMIT 1".format(game_id))
+                nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = '{}' AND status <> 'failed' ORDER BY created DESC LIMIT 1".format(game_id))
             nextPlayerName = cursor.fetchone()["player"]
-            updates = cursor.execute("UPDATE playergame SET status = (case when status= 'turn' then 'ready' when player = '{}' then 'turn' end) WHERE game = '{}'".format(nextPlayerName, game_id))
+            print(str(nextPlayerName))
+            updates = cursor.execute("UPDATE playergame SET status = (case when status= 'turn' then 'ready' when player = '{}' then 'turn' else 'ready' end) WHERE game = '{}' AND status <> 'failed'".format(nextPlayerName, game_id))
             connection.commit()
     except Exception, e:
         print(repr(e))
@@ -108,10 +111,31 @@ def correctTurn(game_id, playerName, newStep):
     return True
 
 def wrongTurn(game_id, playerName):
-    pass
+    try:
+        with connection.cursor() as cursor:
+            nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = {} AND status <> 'failed' AND created < (SELECT created FROM playergame WHERE status='turn' AND game = {}) LIMIT 1".format(game_id,game_id))
+            if not nextPlayerQuery:
+                nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = '{}' AND status <> 'failed' ORDER BY created DESC LIMIT 1".format(game_id))
+            nextPlayerName = cursor.fetchone()["player"]
+            print(str(nextPlayerName))
+            updates = cursor.execute("UPDATE playergame SET status = (case when status = 'turn' then 'failed' when player = '{}' then 'turn' else 'ready' end) WHERE game = '{}' AND status <> 'failed'".format(nextPlayerName, game_id))
+            connection.commit()
+    except Exception, e:
+        print(repr(e))
+        return False
+    return True
 
-def win(game_id, playerName):
-    pass
+def win(game_id):
+    try:
+        with connection.cursor() as cursor:
+            sql = "UPDATE game SET status = 'won' WHERE id = '{}'".format(game_id) 
+            cursor.execute(sql)
+            updates = cursor.execute("UPDATE playergame SET status = 'won'  WHERE game = '{}' AND status <> 'failed'".format( game_id))
+            connection.commit()
+    except Exception, e:
+        print(repr(e))
+        return False
+    return True
 
 
 

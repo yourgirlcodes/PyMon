@@ -3,7 +3,7 @@ from datetime import date, datetime
 def getVersion():
     return "0.0.1"
 
-GAME_LENGTH = 10
+GAME_LENGTH = 3
 
 def json_serial(obj):
     """JSON serializer for objects not serializable by default json code"""

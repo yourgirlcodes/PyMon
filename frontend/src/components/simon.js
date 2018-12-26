@@ -14,27 +14,29 @@ export default class Simon extends React.Component {
         });
     }
 
-    activateBtn(color){
+    activateBtn(color, userInitiated){
         this.setState(() => ({
             activeBtn:color
         }), () => { 
             this.sounds[color].play();
             setTimeout(() => { this.setState({activeBtn:"none"})}, 500);
         });
-        fetch(`/games/${getGameId()}/play`, {
-            method: 'POST',
-            body: JSON.stringify({"color":color})
-        }).then(function (data) {  
-          console.log('Request success: ', data);  
-        })  
-        .catch(function (error) {  
-          console.log('Request failure: ', error);  
-        });
+        if (userInitiated){
+            fetch(`/games/${getGameId()}/play`, {
+                method: 'POST',
+                body: JSON.stringify({"color":color})
+            }).then(function (data) {  
+            console.log('Request success: ', data);  
+            })  
+            .catch(function (error) {  
+            console.log('Request failure: ', error);  
+            });
+        }
     }
 
     playSequence(){
         setTimeout(() => {
-            this.activateBtn(this.props.sequence[this.state.sequenceStep])
+            this.activateBtn(this.props.sequence[this.state.sequenceStep], false)
             this.setState((prevState, props) => ({
                 sequenceStep: prevState.sequenceStep + 1
             }), () => { 
@@ -66,7 +68,7 @@ export default class Simon extends React.Component {
                 <SimonBtn  key={b} color={b} active={this.state.activeBtn == b} disabled={this.props.disabled} clickAction={this.activateBtn.bind(this)} />
             ))}
             { this.state.sequenceStep == 0 && this.props.showPlayBtn &&
-            <button onClick={this.playSequence.bind(this)}>Play</button>
+            <button className="play-btn" onClick={this.playSequence.bind(this)}>Play</button>
             }
             </div>
     }

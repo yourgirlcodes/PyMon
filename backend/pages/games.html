@@ -1,12 +1,12 @@
 {% extends "./backend/pages/base.html" %}
-{% block title %} Available Games{% endblock %}
+{% block title %} Games{% endblock %}
 {% block head %} 
 {% endblock %}
 {% block app %}
 
 <h1 > Available Games</h1>
 {% for g in games %}
-    <a href="/games/{{g.id}}">{{g.name}}</a>
+    <a href="/games/{{g.id}}">{{g.name}} ({{g.status}})</a>
 {% else %}
     No available games :(
 {% endfor %}

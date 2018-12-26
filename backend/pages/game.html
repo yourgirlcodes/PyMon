@@ -1,5 +1,5 @@
 {% extends "./backend/pages/base.html" %}
-{% block title %} Simon {% endblock %}
+{% block title %} Play {% endblock %}
 {% block head %} 
 <script defer src="/js/main.js"></script>
 {% endblock %}
@@ -7,5 +7,6 @@
 <div id="game">
 
 </div>
+<!-- allowing autoplay for sound-->
 <iframe src="/sounds/silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
 {% endblock %}

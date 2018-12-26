@@ -34,30 +34,11 @@ class SimonGame extends React.Component {
     }
 
 
-
-    
-
-
-    join(){
-        fetch(`/games/${getGameId()}/players`, {
-            method: 'POST',
-        }).then(function (data) {  
-          console.log('Request success: ', data);  
-        })  
-        .catch(function (error) {  
-          console.log('Request failure: ', error);  
-        });
-    }
-
-
     render() {
-        return <div >
+        return <div className="main">
                 <h1 >{this.state.game.status}</h1>
                 <Simon  sequence={this.state.game.sequence} disabled={this.state.user.status != "turn"} showPlayBtn={this.state.user.status == "new"}/>
-                { this.state.user.status == "viewer" && this.state.game.status === "open" &&
-                    <button onClick={this.join.bind(this)}>Join!</button>
-                }
-                <Players players={this.state.players} userName={this.state.user.name} viewMode={this.isViewMode()} />
+                <Players players={this.state.players} userName={this.state.user.name} viewMode={this.isViewMode()} showJoinBtn={ this.state.user.status == "viewer" && this.state.game.status === "open"} />
             </div>
     }
 }
