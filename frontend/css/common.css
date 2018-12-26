@@ -32,21 +32,7 @@ button{
     outline:none;
 }
 
-button.yellow{
-    background-color:yellow;
-}
 
-button.red{
-    background-color:red;
-}
-
-button.blue{
-    background-color:blue;
-}
-
-button.green{
-    background-color:green;
-}
 
 .simon button{
     box-sizing: border-box;

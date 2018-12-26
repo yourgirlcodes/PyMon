@@ -34,18 +34,25 @@ def mp3(filepath):
 @jinja2_view('./backend/pages/game.html')
 def play(game_id):
     currentPlayer = request.get_cookie("player")
-    if not currentPlayer:
+    currentGame = db.getGame(game_id)
+    if not currentPlayer or not currentGame:
         redirect("/start")
         return
-    currentGame = db.getGame(game_id)
     gamePlayers = db.getGamePlayers(game_id)
     return {"version" : utils.getVersion(), "game":currentGame, "players":gamePlayers}
 
-@get('/game_status/<game_id>')
+@get('/games/<game_id>/status')
 def status(game_id):
-    currentPlayer = request.get_cookie("player")
+    currentPlayerName = request.get_cookie("player")
+    currentPlayer = {"name":currentPlayerName}
     currentGame = db.getGame(game_id)
+    currentGame["sequence"] = currentGame["sequence"].split(",")
     gamePlayers = db.getGamePlayers(game_id)
+    currentPlayer["status"] = "viewer"
+    for p in gamePlayers:
+        if p["player"] == currentPlayerName:
+            currentPlayer["status"] = p["status"]
+            break
     response.content_type = 'application/json'
     return json.dumps({"game":currentGame,"players":gamePlayers, "user":currentPlayer}, default=utils.json_serial)
 
@@ -71,6 +78,35 @@ def ready(game_id):
     response.content_type = 'application/json'
     return json.dumps({"result":result}, default=utils.json_serial)
 
+def playTurn(game, color):
+    sequence = game["sequence"].split(",")
+    step = game["step"]
+    return color == sequence[step]
+
+
+
+
+@post('/games/<game_id>/play')
+def playerTurn(game_id):
+    currentGame = db.getGame(game_id)
+    result = "failed"
+    if currentGame:
+        playerName = request.get_cookie("player")
+        postdata = json.load(request.body)
+        color = postdata["color"]
+        correct = playTurn(currentGame, color)
+        if correct:
+            newStep = currentGame["step"] + 1
+            if newStep == utils.GAME_LENGTH:
+                db.win(game_id, playerName)
+            else:
+                db.correctTurn(game_id, playerName, newStep)
+        else:
+            db.wrongTurn(game_id, playerName)
+        result = "success"
+    response.content_type = 'application/json'
+    return json.dumps({"result":result}, default=utils.json_serial)
+
 @post('/players')
 def newPlayer():
     playerName = request.forms.get("name")
@@ -81,7 +117,7 @@ def newPlayer():
 
 @post('/games')
 def create():
-    db.createGame(request.forms.get("name"))
+    db.createGame(request.forms.get("name"), request.get_cookie("player"))
     redirect("/games")
 
 @get('/games')
@@ -97,6 +133,15 @@ def games():
 @get('/start')
 @jinja2_view('./backend/pages/start.html')
 def start():
+    currentPlayer = request.get_cookie("player")
+    if currentPlayer:
+        redirect("/games")
+        return
+    return {"version" : utils.getVersion()}
+
+@get('/test/<game_id>')
+def test(game_id):
+    db.correctTurn(game_id, "imc", 0)
     return {"version" : utils.getVersion()}
 
 @get('/game/<game_id>')

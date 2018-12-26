@@ -10,7 +10,7 @@ export default class Players extends React.Component {
             {this.props.players.map(k => (
                 <li key={k.player} className="player" >
                 <span>{k.player}</span>
-                <span>{(k.player === this.props.user) ? "(you)":""}</span>
+                <span>{(k.player === this.props.userName) ? "(you)":""}</span>
                 <span>{k.status}</span>
                 </li>
             ))}

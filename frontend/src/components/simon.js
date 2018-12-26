@@ -1,6 +1,7 @@
 import React from "react";
 import {BUTTONS} from "../config"
 import SimonBtn from "./button"
+import {getGameId} from "../utils"
 
 
 export default class Simon extends React.Component {
@@ -20,17 +21,20 @@ export default class Simon extends React.Component {
             this.sounds[color].play();
             setTimeout(() => { this.setState({activeBtn:"none"})}, 500);
         });
+        fetch(`/games/${getGameId()}/play`, {
+            method: 'POST',
+            body: JSON.stringify({"color":color})
+        }).then(function (data) {  
+          console.log('Request success: ', data);  
+        })  
+        .catch(function (error) {  
+          console.log('Request failure: ', error);  
+        });
     }
 
     playSequence(){
-        const currentColorIndex = this.props.sequence[this.state.sequenceStep];
-        this.activateBtn(BUTTONS[parseInt(currentColorIndex) - 1])
-        // this.setState((prevState, props) => ({
-        //     activeBtn: BUTTONS[parseInt(currentColorIndex) - 1]
-        // }), () => { 
-        //     this.playSound(this.state.activeBtn);
-        // });
         setTimeout(() => {
+            this.activateBtn(this.props.sequence[this.state.sequenceStep])
             this.setState((prevState, props) => ({
                 sequenceStep: prevState.sequenceStep + 1
             }), () => { 
@@ -48,7 +52,7 @@ export default class Simon extends React.Component {
                 }
             }); 
            
-        }, 1500);
+        }, ((this.state.sequenceStep == 0) ? 0 : 1500));
     }
 
     playSound(sound) {
@@ -59,9 +63,9 @@ export default class Simon extends React.Component {
     render() {
         return <div className="simon" >
             {BUTTONS.map(b => (
-                <SimonBtn  key={b} color={b} active={this.state.activeBtn == b} clickAction={this.activateBtn.bind(this)} />
+                <SimonBtn  key={b} color={b} active={this.state.activeBtn == b} disabled={this.props.disabled} clickAction={this.activateBtn.bind(this)} />
             ))}
-            { this.state.sequenceStep == 0 && this.props.playSequence &&
+            { this.state.sequenceStep == 0 && this.props.showPlayBtn &&
             <button onClick={this.playSequence.bind(this)}>Play</button>
             }
             </div>

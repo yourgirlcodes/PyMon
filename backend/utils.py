@@ -3,6 +3,8 @@ from datetime import date, datetime
 def getVersion():
     return "0.0.1"
 
+GAME_LENGTH = 10
+
 def json_serial(obj):
     """JSON serializer for objects not serializable by default json code"""
 
@@ -12,4 +14,5 @@ def json_serial(obj):
 
 def generateSequence():
     import random
-    return ''.join(random.choice("1234") for _ in range(10))
+    colors = ["red", "blue", "green", "yellow"]
+    return ''.join(colors[random.randint(0,len(colors) - 1)] + "," for _ in range(GAME_LENGTH))[:-1]
