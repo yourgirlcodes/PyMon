@@ -91,7 +91,7 @@ def playerTurn(game_id):
         if correct:
             newStep = currentGame["step"] + 1
             if newStep == utils.GAME_LENGTH:
-                db.win(game_id)
+                db.win(game_id, newStep)
             else:
                 db.correctTurn(game_id, playerName, newStep)
         else:

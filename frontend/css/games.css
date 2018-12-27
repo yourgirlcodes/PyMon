@@ -1,22 +1,28 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+}
+
 h1{
     text-align: center;
 }
 
 .game-list{
     display:flex;
-    padding: 0 6%;
     flex-wrap: wrap;
     justify-content: center;
+    overflow: auto;
 }
 
 .game{
     position: relative;
-    min-width:200px;
-    max-width: 200px;
+    min-width:150px;
+    max-width: 150px;
     display: flex;
     flex-direction: column;
     margin: 20px;
-    background-color: #EEE;
+    background-color: whitesmoke;
     border-radius: 20px;
 }
 
@@ -34,8 +40,12 @@ h1{
     font-size: 20px;
     font-family: Arial ;
     color: white;
-    background-color: #222;
+    background-color: rosybrown;
     padding: 5px;
+}
+
+.game:hover .game-bottom{
+    background-color: brown;
 }
 
 
@@ -130,13 +140,9 @@ h1{
 }
 
 form{
-    position: fixed;
-    bottom: 0;
     padding: 12px;
-    width: 100vw;
-    background-color: #222;
-    z-index: 123;
-    color: white;
+    background-color: whitesmoke;
+    color: #333;
 }
 
 form input[type='submit']{
@@ -148,13 +154,17 @@ form input[type='submit']{
     outline: none;
 }
 
+form input[type='submit']:hover{
+    background-color:crimson;
+}
+
 form input[type='text']{
     font-size: 20px;
     border: none;
     border-bottom: 2px solid #999;
     background-color: transparent;
     outline: none;
-    color: white;
+    color: #333;
     margin-left: 10px;
 }
 

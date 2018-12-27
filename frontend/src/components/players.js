@@ -9,13 +9,12 @@ export default class Players extends React.Component {
             {viewMode}
             <h3>Players</h3><ul className="players">
             {this.props.showJoinBtn &&
-            <button onClick={this.join.bind(this)}>Join!</button>
+            <button className="join-btn" onClick={this.join.bind(this)}>Join!</button>
             }
             {this.props.players.map(k => (
                 <li key={k.player} className="player" >
-                <span className="player-name">{k.player}</span>
-                <span>{(k.player === this.props.userName) ? "(you)":""}</span>
-                <span className="player-status">{k.status}</span>
+                <span className="player-name">{k.player} {(k.player === this.props.userName) ? "(you)":""}</span>
+                <span className={`player-status ${k.status}`}>{k.status}</span>
                 </li>
             ))}
             </ul>

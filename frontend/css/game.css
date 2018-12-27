@@ -1,12 +1,11 @@
 
-
 .main{
     display:flex;
     height: 100vh;
 }
 
 .players{
-    background-color: cornflowerblue;
+    flex:1;
     padding:10px;
 }
 
@@ -23,21 +22,83 @@
 .player-name{
     margin-left:3px;
 }
+
 .player-status{
-    margin-left:3px;
+    margin-left: 3px;
     padding: 5px;
-    background-color:lightgreen;
+    width: 35px;
+    font-size: 12px;
+    background-color: lightgreen;
+    text-align: center;
 }
 
+.player-status.failed{
+    background-color:lightcoral;
+}
+
+.player-status.new{
+    background-color:lightblue;
+}
+
+.player-status.turn{
+    background-color:orange;
+    animation: blinker 1s linear infinite;
+}
+
+.join-btn{
+    background-color: brown;
+    color: white;
+    width: 100%;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.sequence{
+    padding: 10px;
+}
+
+.sequence-light{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    margin: 0px 5px;
+}
+
+.inner-light{
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background-image: url(/images/plastic.png);
+}
 
 .simon{
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
+    width: 70vh;
+    height: 70vh;
     background-color: #333;
     border-radius: 100%;
-    padding: 50px;
+    padding: 5vh;
     margin:auto;
     box-shadow: 10px 10px 53px -15px rgba(0,0,0,0.75);
 }
@@ -45,6 +106,7 @@
 
 .simon .light-btn.disabled{
     cursor: default;
+    border:none;
 }
 
 .simon .light-btn{
@@ -53,9 +115,9 @@
     -moz-border-radius:320px 20px 20px;
     -o-border-radius:320px 20px 20px;
     border-radius:320px 20px 20px;
-    width:180px;
-    height:180px;
-    margin:10px;
+    width: 42%;
+    height: 42%;
+    margin: 4%;
     background-image: url('/images/plastic.png');
     background-position: center;
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
@@ -95,26 +157,36 @@
     border:none;
 }
 
-.game-status .status-text, .join-form{
-    display:none;
+.side{
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    background-color: whitesmoke;
 }
 
-[data-status="open"] .join-form{
-    display:inline-block;
+.game-status{
+    font-size: 45px;
+    padding: 5px 0;
+    font-family: Lobster;
+    text-align: center;
 }
 
-[data-status="loading"] .status-text.loading{
-    display: inline;
+.game-status.loading{
+    color:#CCC;
 }
 
-[data-status="on"] .status-text.on{
-    display: inline;
+.game-status.won{
+    color:green;
 }
 
-[data-status="open"] .status-text.open{
-    display: inline;
+.game-status.on{
+    color:orange;
 }
 
-[data-status="over"] .status-text.over{
-    display: inline;
+.game-status.failed{
+    color:red;
+}
+
+.game-status.open{
+    color:blue;
 }

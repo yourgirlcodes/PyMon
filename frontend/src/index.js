@@ -3,11 +3,12 @@ import ReactDOM from "react-dom";
 import {getGameId} from "./utils"
 import Simon from "./components/simon"
 import Players from "./components/players"
+import Sequence from "./components/sequence"
 
 class SimonGame extends React.Component {
     constructor(){
         super();
-        this.state = {game:{status:"loading", sequence:""}, user:{name:"", status:""}, players:[]}
+        this.state = {game:{status:"loading", sequence:[]}, user:{name:"", status:""}, players:[]}
     }
 
     componentDidMount() {
@@ -36,9 +37,14 @@ class SimonGame extends React.Component {
 
     render() {
         return <div className="main">
-                <h1 >{this.state.game.status}</h1>
-                <Simon  sequence={this.state.game.sequence} disabled={this.state.user.status != "turn"} showPlayBtn={this.state.user.status == "new"}/>
-                <Players players={this.state.players} userName={this.state.user.name} viewMode={this.isViewMode()} showJoinBtn={ this.state.user.status == "viewer" && this.state.game.status === "open"} />
+                <div className="center">
+                    <Simon  sequence={this.state.game.sequence} disabled={this.state.user.status != "turn"} showPlayBtn={this.state.user.status == "new"}/>
+                    <Sequence sequence={this.state.game.sequence} step={this.state.game.step} />
+                </div>
+                <div className="side">
+                    <div className={`game-status ${this.state.game.status}`}>{this.state.game.status}</div>
+                    <Players players={this.state.players} userName={this.state.user.name} viewMode={this.isViewMode()} showJoinBtn={ this.state.user.status == "viewer" && this.state.game.status === "open"} />
+                </div>
             </div>
     }
 }

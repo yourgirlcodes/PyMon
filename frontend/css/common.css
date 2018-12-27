@@ -1,6 +1,12 @@
 html, body{
-    margin:0px;
+    margin:0;
+    padding:0;
     font-family:Arial;
+}
+
+body{
+    background-image: url(/images/simonbg.png);
+    background-size: 120px;
 }
 
 h1{
@@ -8,7 +14,6 @@ h1{
 }
 
 a{
-    color:darkorange;
     text-decoration: none;
 }
 
@@ -26,4 +31,44 @@ ul{
     -webkit-box-shadow: 10px 10px 35px -13px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 35px -13px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 35px -13px rgba(0,0,0,0.75);
+}
+
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+
+@keyframes movearound {
+    0%  {top:240px;left:840px;opacity:0;}
+    5%  {top:240px;left:840px;opacity:1;}
+    10%  {top:0px;left:0px;opacity:0;}
+    15%  {top:0px;left:0px;opacity:1;}
+    20%  {top:360px;left:720px;opacity:0;}
+    25%  {top:360px;left:720px;opacity:1;}
+    30%  {top:120px;left:480px;opacity:0;}
+    35%  {top:120px;left:480px;opacity:1;}
+    40% {top:0;left:600px;opacity:0;}
+    50% {top:0;left:600px;opacity:1;}
+    60% {top:120px;left:360px;opacity:0;}
+    70% {top:120px;left:360px;opacity:1;}
+    80% {top:360px;left:600px;opacity:0;}
+    90% {top:360px;left:600px;opacity:1;}
+    95% {top:720px;left:720px;opacity:0;}
+    100% {top:720px;left:720px;opacity:1;}
+}
+
+.colored-simon{
+    position:fixed;
+    top:0;
+    left:0;
+    width: 120px;
+    z-index:-1;
+    animation-name: movearound;
+    animation-timing-function: steps(1);
+    animation-duration: 15s;
+    transition: opacity 1s ease-in-out;
+    animation-iteration-count: infinite;
 }

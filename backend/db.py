@@ -129,10 +129,10 @@ def wrongTurn(game_id, playerName):
         return False
     return True
 
-def win(game_id):
+def win(game_id, newStep):
     try:
         with connection.cursor() as cursor:
-            sql = "UPDATE game SET status = 'won' WHERE id = '{}'".format(game_id) 
+            sql = "UPDATE game SET status = 'won', step='{}' WHERE id = '{}'".format(newStep, game_id) 
             cursor.execute(sql)
             updates = cursor.execute("UPDATE playergame SET status = 'won'  WHERE game = '{}' AND status <> 'failed'".format( game_id))
             connection.commit()
