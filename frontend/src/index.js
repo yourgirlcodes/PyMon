@@ -22,7 +22,7 @@ class SimonGame extends React.Component {
         }).then(function(newStatus) {
             //Game started
             self.setState((prevState, props) => (newStatus), () => {
-                setTimeout(() => {self.gameLoop()}, 5000);
+                setTimeout(() => {self.gameLoop()}, 2000);
              });
         }).catch(function (error) {  
             console.log('Request failure: ', error);  

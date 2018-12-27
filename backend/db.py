@@ -103,7 +103,8 @@ def correctTurn(game_id, playerName, newStep):
                 nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = '{}' AND status <> 'failed' ORDER BY created DESC LIMIT 1".format(game_id))
             nextPlayerName = cursor.fetchone()["player"]
             print(str(nextPlayerName))
-            updates = cursor.execute("UPDATE playergame SET status = (case when status= 'turn' then 'ready' when player = '{}' then 'turn' else 'ready' end) WHERE game = '{}' AND status <> 'failed'".format(nextPlayerName, game_id))
+            if nextPlayerName:
+                updates = cursor.execute("UPDATE playergame SET status = (case when status= 'turn' AND player <> '{}' then 'ready' when player = '{}' then 'turn' else 'ready' end) WHERE game = '{}' AND status <> 'failed'".format(nextPlayerName, nextPlayerName,  game_id))
             connection.commit()
     except Exception, e:
         print(repr(e))
@@ -116,9 +117,12 @@ def wrongTurn(game_id, playerName):
             nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = {} AND status <> 'failed' AND created < (SELECT created FROM playergame WHERE status='turn' AND game = {}) LIMIT 1".format(game_id,game_id))
             if not nextPlayerQuery:
                 nextPlayerQuery = cursor.execute("SELECT player FROM playergame WHERE game = '{}' AND status <> 'failed' ORDER BY created DESC LIMIT 1".format(game_id))
+            
             nextPlayerName = cursor.fetchone()["player"]
-            print(str(nextPlayerName))
             updates = cursor.execute("UPDATE playergame SET status = (case when status = 'turn' then 'failed' when player = '{}' then 'turn' else 'ready' end) WHERE game = '{}' AND status <> 'failed'".format(nextPlayerName, game_id))
+            print("SSSSSSSSSSSSSS " + str(updates))
+            if updates == 1:
+                cursor.execute("UPDATE game SET status = 'failed' WHERE id = '{}'".format(game_id) )
             connection.commit()
     except Exception, e:
         print(repr(e))

@@ -43,14 +43,10 @@ def status(game_id):
     currentGame["sequence"] = currentGame["sequence"].split(",")
     gamePlayers = db.getGamePlayers(game_id)
     currentPlayer["status"] = "viewer"
-    failedPlayers = 0
     for p in gamePlayers:
-        if p["status"] == "failed":
-            failedPlayers = failedPlayers + 1
         if p["player"] == currentPlayerName:
             currentPlayer["status"] = p["status"]
-    if failedPlayers and failedPlayers == len(gamePlayers):
-        currentGame["status"] = "over"
+            break
     response.content_type = 'application/json'
     return json.dumps({"game":currentGame,"players":gamePlayers, "user":currentPlayer}, default=utils.json_serial)
 
@@ -93,15 +89,12 @@ def playerTurn(game_id):
         color = postdata["color"]
         correct = playTurn(currentGame, color)
         if correct:
-            print("yoyoyoyoy")
             newStep = currentGame["step"] + 1
             if newStep == utils.GAME_LENGTH:
                 db.win(game_id)
             else:
-                print("sssssss")
                 db.correctTurn(game_id, playerName, newStep)
         else:
-            print("3333333")
             db.wrongTurn(game_id, playerName)
         result = "success"
     response.content_type = 'application/json'
