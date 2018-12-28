@@ -1,18 +1,22 @@
-# Project Title
+# Welcome to PYmon
 
-One Paragraph of project description goes here
+PYmon is an online multiplayer version of the famous Hasbro game simon
+The rules are simple...
+
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+First go to 
+Clone the project and make sure you have all of the tools below installed.
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+* [Python 2.7.x](https://www.python.org/downloads/release/python-2715/)
+* [Pip](https://pypi.org/project/pip/)
+* [npm](https://www.npmjs.com/)
+* [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
-```
-Give examples
-```
 
 ### Installing
 
@@ -54,7 +58,9 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+The project is "Heroku Deploy Ready"
+All you have to do is to create a new Heroku app
+Git push heroku master
 
 ## Built With
 
@@ -76,8 +82,32 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+## TODO
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Implement the filters on /games page 
+    description: (should allow users to filter games according to status)
+    desing: A selected filter should be css "brown" color ("OPEN" should be selected on load)
+    constraints: frontend implementation (HTML/CSS/JS)
+* Implement a back button in /game page.
+    description: allow users to exit a game to the /games page
+    design: total freedom
+    constraints: react component implementation "BackBtn"
+* Implement a more impressive "Game Over"/"Game Won" prompt
+    description: currently there are none, try to make something nice...
+    design: total freedom
+    constraints: total freedom (follow application structure)
+* Implement highscores page
+    description: A standalone page showing the top 10 users with the heighest score (most games won) descending order.
+    design: total freedom
+    constraints: total freedom (follow application structure)
+* Implement the ability for a player to select one of 5 avatars
+    description: On the /start page add the ability to select an avatar
+    (the DB already contains that field)
+    The avatar should be shown in the "players" component next to the players name
+    design: total freedom
+    constraints: total freedom (follow application structure)
+* Update project to Python 3.x
+    description: currently the project runs Pyhton 2.7.x
+    update the projuct and make sure all third party libraries works.
+    Also verify deploying to Heroku is not borken.
+

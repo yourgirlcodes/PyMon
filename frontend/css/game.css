@@ -28,16 +28,20 @@
     padding: 5px;
     width: 35px;
     font-size: 12px;
-    background-color: lightgreen;
+    background-color: whitesmoke;
     text-align: center;
+}
+
+.player-status.ready{
+    background-color: lightblue;
 }
 
 .player-status.failed{
     background-color:lightcoral;
 }
 
-.player-status.new{
-    background-color:lightblue;
+.player-status.won{
+    background-color:lightgreen;
 }
 
 .player-status.turn{
@@ -162,6 +166,15 @@
     flex-direction: column;
     width: 15vw;
     background-color: whitesmoke;
+}
+
+.game-name{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    padding: 4px 0;
+    font-family: 'Roboto Slab';
 }
 
 .game-status{

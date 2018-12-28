@@ -31,15 +31,4 @@ export default class Players extends React.Component {
           console.log('Request failure: ', error);  
         });
     }
-
-    ready(){
-        fetch(`/games/${getGameId()}/players`, {
-            method: 'PUT',
-        }).then(function (data) {  
-          console.log('Request success: ', data);  
-        })  
-        .catch(function (error) {  
-          console.log('Request failure: ', error);  
-        });
-    }
 }

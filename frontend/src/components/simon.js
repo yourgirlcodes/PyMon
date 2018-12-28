@@ -22,7 +22,7 @@ export default class Simon extends React.Component {
             setTimeout(() => { this.setState({activeBtn:"none"})}, 500);
         });
         if (userInitiated){
-            fetch(`/games/${getGameId()}/play`, {
+            fetch(`/games/${getGameId()}/turn`, {
                 method: 'POST',
                 body: JSON.stringify({"color":color})
             }).then(function (data) {  
