@@ -6,7 +6,7 @@ The rules are simple...
 
 ## Getting Started
 
-First go to 
+First visit [The Demo](https://py-mon.herokuapp.com/) (hopefully it will be awake)
 Clone the project and make sure you have all of the tools below installed.
 
 
