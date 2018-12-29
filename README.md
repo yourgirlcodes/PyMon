@@ -2,6 +2,16 @@
 
 PYmon is an online multiplayer version of the famous Hasbro game simon
 
+## Built With
+
+* [Bottle](https://bottlepy.org/docs/dev/) - The web framework used
+* [React](https://reactjs.org/) - FrontEnd Framework
+* [Webpack](https://webpack.js.org/) - Frontend module bundler
+
+## Authors
+
+* **Gilad Navot** - *Initial work* - [navotgil](https://github.com/navotgil)
+
 ## Getting Started
 
 First, visit [The Demo](https://py-mon.herokuapp.com/) (hopefully it will be awake)
@@ -46,9 +56,16 @@ Update your credentials in the dbutils.py file!!!!
 ### Installing the DB
 
 Update your credentials in the dbutils.py file!!!!
-
-Explain what these tests test and why
-
+```
+connection = pymysql.connect(host='db4free.net',
+                             user='<your user>',
+                             password='<your password>',
+                             db='<your db>',
+                             charset='utf8',
+                             autocommit=True,
+                             cursorclass=pymysql.cursors.DictCursor)
+```
+And run the following commands on your MySql workbench
 ```
 CREATE TABLE `game` (
   `id` int(11) NOT NULL,
@@ -97,26 +114,25 @@ COMMIT;
 ## Deployment
 
 The project is "Heroku Deploy Ready"
-All you have to do is to create a new Heroku app
-Git push heroku master
 
-## Built With
+In order for the project to work online you will have to use a remote MySql DB
+one option is to use the following [service](https://www.db4free.net)
 
-* [Bottle](https://bottlepy.org/docs/dev/) - The web framework used
-* [React](https://reactjs.org/) - FrontEnd Framework
-* [Webpack](https://webpack.js.org/) - Frontend module bundler
+1. Set a DB onine (following this [step](#installing-the-db) again, this time online) 
 
+2. Don't forget to update the dbutils.py credentials
 
-## Authors
+3. Create a new Heroku app
 
-* **Gilad Navot** - *Initial work* - [navotgil](https://github.com/navotgil)
-
+4. Git push heroku master
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License
 
 ## TODO
+Split into groups of up to 30 people :)
+AND GET THE JOB DONE
 
 * Implement the filters on /games page 
     **description:** (should allow users to filter games according to status)
@@ -152,5 +168,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
     **description:** The simon itself is quite responsive but we need to fix side menu somehow
     **design:** total freedom
     **constraints:** use media queries
-
-
