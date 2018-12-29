@@ -2,20 +2,19 @@
 
 PYmon is an online multiplayer version of the famous Hasbro game simon
 
-
 ## Getting Started
 
-First visit [The Demo](https://py-mon.herokuapp.com/) (hopefully it will be awake)
+First, visit [The Demo](https://py-mon.herokuapp.com/) (hopefully it will be awake)
 Clone the project and make sure you have all of the tools below installed.
-
 
 ### Prerequisites
 
+* [A computer](https://www.ebay.com/itm/386-Computer-AMD-80386DX40-40Mhz-8Mb-RAM-Windows-3-11-Old-DOS-Game-PC/153285622134)
 * [Python 2.7.x](https://www.python.org/downloads/release/python-2715/)
 * [Pip](https://pypi.org/project/pip/)
-* [npm](https://www.npmjs.com/)
-* [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
-* [Remote MySql Server](https://www.db4free.net)
+* [Npm](https://www.npmjs.com/)
+* [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) (needed for deployment)
+* [Remote MySql Server](https://www.db4free.net) (needed for deployment)
 
 
 ### Installing
@@ -25,7 +24,7 @@ Clone the project and make sure you have all of the tools below installed.
 3. clone this repository
     ```
     git init
-    git clone <this repository url>
+    git clone https://github.com/navotgil/pymon
     ```
 4. run pip and install the required libraries
     ```
