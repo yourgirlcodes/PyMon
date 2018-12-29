@@ -9,6 +9,6 @@ from backend.page_handlers import pageHandler
 app.merge(staticHandler)
 app.merge(pageHandler)
 if os.environ.get('APP_LOCATION') == 'heroku':
-    run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 else:
-    run(host='localhost', port=5000, debug=True)
+    run(app, host='localhost', port=5000, debug=True)
