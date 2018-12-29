@@ -2,10 +2,12 @@
 
 PYmon is an online multiplayer version of the famous Hasbro game simon
 
+![simon sketch](http://lh3.googleusercontent.com/qXdmXKyRLzxf0SspNm8QBsOSsXUoDADTo-3q-zLf0kd3qdk2P9fXsoeg-wV7b8cW0MXt6yVktsFrWsJZ2Q6OS6u4=s200)
+
 ## Built With
 
-* [Bottle](https://bottlepy.org/docs/dev/) - The web framework used
-* [React](https://reactjs.org/) - FrontEnd Framework
+* [Bottle (Python)](https://bottlepy.org/docs/dev/) - The web framework used
+* [React (JS)](https://reactjs.org/) - FrontEnd Framework
 * [Webpack](https://webpack.js.org/) - Frontend module bundler
 
 ## Authors
@@ -80,7 +82,7 @@ CREATE TABLE `game` (
 
 CREATE TABLE `player` (
   `id` varchar(30) NOT NULL,
-  `avatar` varchar(30) NOT NULL DEFAULT 'anonymous',
+  `avatar` varchar(100) NOT NULL DEFAULT 'anonymous',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -131,24 +133,24 @@ one option is to use the following [service](https://www.db4free.net)
 This project is licensed under the MIT License
 
 ## TODO
-Split into groups of up to 30 people :)
-AND GET THE JOB DONE
+Split into groups of up to 10 people :)
+AND GET THE JOB DONE!
 
 * Implement the filters on /games page 
     **description:** (should allow users to filter games according to status)
     **desing:** A selected filter should be css "brown" color ("OPEN" should be selected on load)
     **constraints:** frontend implementation (HTML/CSS/JS)
 * Implement a back button in /game page.
-    **description:** allow users to exit a game to the /games page
+    **description:** allow users to go back to the /games page
     **design:** total freedom
-    **constraints:** react component implementation "BackBtn"
+    **constraints:** Add React component "BackBtn"
 * Implement a more impressive "Game Over"/"Game Won" prompt
     **description:** currently there are none, try to make something nice...
     **design:** total freedom
     **constraints:** total freedom (follow application structure)
 * Implement highscores page
     **description:** A standalone page showing the top 10 users with the heighest score (most games won) descending order.
-    **design:** total freedom
+    **design:** total freedom (follow application design)
     **constraints:** total freedom (follow application structure)
 * Implement the ability for a player to select one of 5 avatars
     **description:** On the /start page add the ability to select an avatar
@@ -158,7 +160,7 @@ AND GET THE JOB DONE
     **constraints:** total freedom (follow application structure)
 * Update project to Python 3.x
     **description:** currently the project runs Pyhton 2.7.x
-    update the projuct and make sure all third party libraries works.
+    update the project and make sure all third party libraries works.
     Also verify deploying to Heroku is not borken.
 * Implement delete button for game in the /games page
     **description:** users should be able to delete old games
@@ -168,3 +170,8 @@ AND GET THE JOB DONE
     **description:** The simon itself is quite responsive but we need to fix side menu somehow
     **design:** total freedom
     **constraints:** use media queries
+* Serve mp3s from a CDN
+    **description:** Currently the mp3 serving is not reliable, find a (free) CDN upload the files and serve from there
+* Add comments to the entire project (ALL OVER!)
+* Find and fix any bug
+* Add some missing features of your own

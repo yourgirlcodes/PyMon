@@ -1,7 +1,7 @@
 import React from "react";
 import {BUTTONS} from "../config"
 import SimonBtn from "./button"
-import {getGameId} from "../utils"
+import {getGameId, ajax} from "../utils"
 
 
 export default class Simon extends React.Component {
@@ -22,15 +22,7 @@ export default class Simon extends React.Component {
             setTimeout(() => { this.setState({activeBtn:"none"})}, 500);
         });
         if (userInitiated){
-            fetch(`/games/${getGameId()}/turn`, {
-                method: 'POST',
-                body: JSON.stringify({"color":color})
-            }).then(function (data) {  
-            console.log('Request success: ', data);  
-            })  
-            .catch(function (error) {  
-            console.log('Request failure: ', error);  
-            });
+            ajax(`/games/${getGameId()}/turn`, {method: 'POST', body: JSON.stringify({"color":color})});
         }
     }
 
@@ -43,14 +35,7 @@ export default class Simon extends React.Component {
                 if (this.state.sequenceStep < this.props.sequence.length){
                     this.playSequence();
                 }else{
-                    fetch(`/games/${getGameId()}/players`, {
-                        method: 'PUT',
-                    }).then(function (data) {  
-                        console.log('Request success: ', data);  
-                    })  
-                    .catch(function (error) {  
-                        console.log('Request failure: ', error);  
-                    });
+                    ajax(`/games/${getGameId()}/players`, {method: 'PUT'})
                 }
             }); 
            
@@ -72,6 +57,4 @@ export default class Simon extends React.Component {
             }
             </div>
     }
-
-    
 }

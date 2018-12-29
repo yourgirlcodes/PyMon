@@ -51,7 +51,6 @@ h1{
     background-color: brown;
 }
 
-
 .ribbon {
     position: absolute;
     right: -5px; top: -5px;
@@ -98,7 +97,6 @@ h1{
     border-top: 3px solid #1e5799;
 }
 
-
 .won .ribbon span {
     background: linear-gradient(#7fdf7f 0%, #2fa81f 100%);
 }
@@ -112,7 +110,6 @@ h1{
     border-right: 3px solid #2fa81f;
     border-top: 3px solid #2fa81f;
 }
-
 
 .on .ribbon span {
     background: linear-gradient(#e8eeb5 0%, #d7e611 100%);

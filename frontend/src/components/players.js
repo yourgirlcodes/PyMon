@@ -1,5 +1,5 @@
 import React from "react";
-import {getGameId} from "../utils"
+import {getGameId, ajax} from "../utils"
 import Loader from "./loader"
 
 export default class Players extends React.Component {
@@ -8,10 +8,19 @@ export default class Players extends React.Component {
         this.state = {joinClicked:false};
     }
 
+    join(){
+        if (this.state.joinClicked){
+            return;
+        }
+        this.setState(() => ({
+            joinClicked:true
+        }), () => { 
+            ajax(`/games/${getGameId()}/players`,{method: 'POST'});
+        });
+    }
+
     render() {
-        let viewMode = (this.props.viewMode) ?<div>View mode</div> :"" ;
         return <div className="players">
-            {viewMode}
             <h3>Players</h3><ul className="players">
             {this.props.showJoinBtn &&
             <button className={`join-btn ${(this.state.joinClicked) ? "loading" : ""}`} onClick={this.join.bind(this)}>
@@ -26,23 +35,5 @@ export default class Players extends React.Component {
             ))}
             </ul>
             </div>
-    }
-
-    join(){
-        if (this.state.joinClicked){
-            return;
-        }
-        this.setState(() => ({
-            joinClicked:true
-        }), () => { 
-            fetch(`/games/${getGameId()}/players`, {
-                method: 'POST',
-            }).then(function (data) {  
-            console.log('Request success: ', data);  
-            })  
-            .catch(function (error) {  
-            console.log('Request failure: ', error);  
-            });
-        });
     }
 }

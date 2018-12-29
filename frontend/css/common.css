@@ -33,13 +33,11 @@ ul{
     box-shadow: 10px 10px 35px -13px rgba(0,0,0,0.75);
 }
 
-  
   @keyframes blinker {
     50% {
       opacity: 0.5;
     }
   }
-
 
 @keyframes movearound {
     0%  {top:240px;left:840px;opacity:0;}

@@ -1,5 +1,5 @@
 import React from "react";
-import {getGameId} from "../utils"
+import {getGameId, ajax} from "../utils"
 import Simon from "./simon"
 import Players from "./players"
 import Sequence from "./sequence"
@@ -15,24 +15,19 @@ export default class SimonGame extends React.Component {
     }
 
     gameLoop(){
-        var self = this;
-        var gameId = getGameId();
-        fetch(`/games/${gameId}/status`).then(function(response) { 
-            return response.json();
-        }).then(function(newStatus) {
-            //Game started
-            self.setState((prevState, props) => (newStatus), () => {
-                setTimeout(() => {self.gameLoop()}, 2000);
+        ajax(`/games/${getGameId()}/status`, {},  (newStatus) => {
+            this.setState(() => (newStatus), () => {
+                //Poll the status only if the game is not over
+                if (newStatus.game.status != "failed" && newStatus.game.status != "won"){
+                    setTimeout(() => {this.gameLoop()}, 2000);
+                }
              });
-        }).catch(function (error) {  
-            console.log('Request failure: ', error);  
         });
     }
 
     isViewMode(){
         return this.state.user.status == "viewer" && this.state.game.status === "on";
     }
-
 
     render() {
         return <div className="main">
@@ -42,8 +37,9 @@ export default class SimonGame extends React.Component {
                 </div>
                 <div className="side">
                     <div className="game-name">{this.state.game.name}</div>
+                    {(this.isViewMode()) && <div className="view-mode" >View mode</div>}
                     <div className={`game-status ${this.state.game.status}`}>{this.state.game.status}</div>
-                    <Players players={this.state.players} userName={this.state.user.name} viewMode={this.isViewMode()} showJoinBtn={ this.state.user.status == "viewer" && this.state.game.status === "open"} />
+                    <Players players={this.state.players} userName={this.state.user.name} showJoinBtn={ this.state.user.status == "viewer" && this.state.game.status === "open"} />
                 </div>
             </div>
     }
