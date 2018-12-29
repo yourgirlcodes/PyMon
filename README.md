@@ -45,16 +45,6 @@ Clone the project and make sure you have all of the tools below installed.
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
 ```
 
 ### Installing the DB
@@ -138,10 +128,6 @@ Git push heroku master
 * [Bottle](https://bottlepy.org/docs/dev/) - The web framework used
 * [React](https://reactjs.org/) - FrontEnd Framework
 * [Webpack](https://webpack.js.org/) - Frontend module bundler
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 
 ## Authors
