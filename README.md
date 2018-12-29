@@ -41,6 +41,7 @@ Clone the project and make sure you have all of the tools below installed.
     npm run build
     ```
 6. create a remote or local MYSQL DB on (you can use [db4free](https://www.db4free.net) or your own machine for now follow the instruction on this [section](#installing-the-db)
+Update your credentials in the dbutils.py file!!!!
 
 
 End with an example of getting some data out of the system or using it for a little demo
