@@ -1,4 +1,4 @@
-from bottle import (Bottle, get, post, put, redirect, request, response)
+from bottle import (Bottle, get, post, put, redirect, request, response, jinja2_view)
 import json
 import utils
 import controller
@@ -41,3 +41,8 @@ def newPlayerHandler():
 def create():
     controller.createGame(request.forms.get("name"), request.get_cookie("player"))
     redirect("/games")
+
+@app.error(404)
+@jinja2_view('./backend/pages/404.html')
+def error404(error):
+    return {"version" : utils.getVersion()}

@@ -1,4 +1,4 @@
-from bottle import (Bottle, request, jinja2_view, redirect, error)
+from bottle import (Bottle, request, jinja2_view, redirect)
 import utils
 import controller
 
@@ -35,9 +35,4 @@ def play(game_id):
 @pageHandler.get('/')
 @jinja2_view('./backend/pages/index.html')
 def landing():
-    return {"version" : utils.getVersion()}
-
-@pageHandler.error(404)
-@jinja2_view('./backend/pages/404.html')
-def error404(error):
     return {"version" : utils.getVersion()}
