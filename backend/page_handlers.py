@@ -1,4 +1,4 @@
-from bottle import (Bottle, request, jinja2_view, redirect)
+from bottle import (Bottle, request, jinja2_view, redirect, error)
 import utils
 import controller
 
@@ -37,7 +37,7 @@ def play(game_id):
 def landing():
     return {"version" : utils.getVersion()}
 
-@error(404)
+@pageHandler.error(404)
 @jinja2_view('./backend/pages/404.html')
 def error404(error):
     return template('error', error_msg='404 error. Nothing to see here')
