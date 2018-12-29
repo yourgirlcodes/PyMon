@@ -36,3 +36,8 @@ def play(game_id):
 @jinja2_view('./backend/pages/index.html')
 def landing():
     return {"version" : utils.getVersion()}
+
+@error(404)
+@jinja2_view('./backend/pages/404.html')
+def error404(error):
+    return template('error', error_msg='404 error. Nothing to see here')
