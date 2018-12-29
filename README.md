@@ -49,10 +49,11 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### Installing the DB
 
+Update your credentials in the dbutils.py file!!!!
+
 Explain what these tests test and why
 
 ```
-
 CREATE TABLE `game` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
@@ -78,43 +79,23 @@ CREATE TABLE `playergame` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Indexes 
---
-
 ALTER TABLE `game`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `player`
---
 ALTER TABLE `player`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `playergame`
---
 ALTER TABLE `playergame`
   ADD KEY `game` (`game`),
   ADD KEY `player` (`player`);
 
-
---
--- AUTO_INCREMENT for table `game`
---
 ALTER TABLE `game`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
-
---
--- Constraints for table `playergame`
---
 ALTER TABLE `playergame`
   ADD CONSTRAINT `game` FOREIGN KEY (`game`) REFERENCES `game` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `player` FOREIGN KEY (`player`) REFERENCES `player` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
-
-
 ```
 
 ## Deployment
