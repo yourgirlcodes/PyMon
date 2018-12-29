@@ -2,7 +2,8 @@
   "name": "simon",
   "version": "0.0.1",
   "scripts": {
-    "build": "webpack --mode development"
+    "build": "webpack --mode development",
+    "heroku-postbuild": "npm run build"
   },
   "main": "/src/index.js",
   "dependencies": {

@@ -186,5 +186,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
     **description:** users should be able to delete old games
     **design:** show the delete button only for games the user can delete
     **constraints:** only the game creator should be able to delete a game (follow application structure)
+* Fix responsiveness on mobile
+    **description:** The simon itself is quite responsive but we need to fix side menu somehow
+    **design:** total freedom
+    **constraints:** use media queries
 
 
