@@ -1,7 +1,6 @@
 # Welcome to PYmon
 
 PYmon is an online multiplayer version of the famous Hasbro game simon
-The rules are simple...
 
 
 ## Getting Started
