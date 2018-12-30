@@ -1,7 +1,7 @@
 from bottle import (Bottle, get, post, put, redirect, request, response, jinja2_view)
 import json
-import utils
-import controller
+from backend import utils
+from backend import controller
 
 app = Bottle()
 

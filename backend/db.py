@@ -1,4 +1,4 @@
-import dbutils
+from backend import dbutils
 
 def getAllGames():
     return dbutils.queryAll("SELECT * FROM game")

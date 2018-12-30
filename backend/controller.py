@@ -1,5 +1,5 @@
-import utils
-import db
+from backend import utils
+from backend import db
 
 def createGame(name, creator):
     sequence = utils.generateSequence()

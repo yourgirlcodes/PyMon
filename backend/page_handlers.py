@@ -1,6 +1,6 @@
 from bottle import (Bottle, request, jinja2_view, redirect)
-import utils
-import controller
+from backend import utils
+from backend import controller
 
 pageHandler = Bottle()
 
