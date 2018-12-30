@@ -66,7 +66,12 @@ connection = pymysql.connect(host='db4free.net',
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
 ```
-And run the following commands on your MySql workbench
+Create a database for the project.
+You can use:
+```
+CREATE DATABASE <database_name>
+```
+And run the following commands on your MySql workbench to define the database
 ```
 CREATE DATABASE pymon;
 use pymon;
