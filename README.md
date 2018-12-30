@@ -35,7 +35,6 @@ Clone the project and make sure you have all of the tools below installed.
 2. cd into the folder.
 3. clone this repository
     ```
-    git init
     git clone https://github.com/navotgil/pymon
     ```
 4. run pip and install the required libraries
@@ -69,6 +68,8 @@ connection = pymysql.connect(host='db4free.net',
 ```
 And run the following commands on your MySql workbench
 ```
+CREATE DATABASE pymon;
+use pymon;
 CREATE TABLE `game` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
@@ -84,7 +85,7 @@ CREATE TABLE `player` (
   `id` varchar(30) NOT NULL,
   `avatar` varchar(100) NOT NULL DEFAULT 'anonymous',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 
 CREATE TABLE `playergame` (
@@ -92,7 +93,7 @@ CREATE TABLE `playergame` (
   `player` varchar(30) NOT NULL,
   `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'new',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 ALTER TABLE `game`
   ADD PRIMARY KEY (`id`);
