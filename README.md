@@ -48,7 +48,7 @@ Clone the project and make sure you have all of the tools below installed.
 2. cd into the folder.
 3. clone this repository
     ```
-    git clone https://github.com/navotgil/pymon
+    git clone https://gitlab.com/itc-bootcamp/assignment12-pymon.git
     ```
 4. run pip and install the required libraries
     ```
