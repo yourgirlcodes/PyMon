@@ -3,9 +3,9 @@ import pymysql
 
 # Connect to the database
 connection = pymysql.connect(host='db4free.net',
-                             user='lotemhiki_1',
-                             password='dama2020',
-                             db='pymon_1',
+                             user='<your user>',
+                             password='<your password>',
+                             db='<your db>',
                              charset='utf8',
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
