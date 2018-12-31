@@ -42,10 +42,7 @@ export default class Simon extends React.Component {
         }, ((this.state.sequenceStep == 0) ? 0 : 1500));
     }
 
-    playSound(sound) {
-        this.sounds[sound].currentTime=0;
-        this.sounds[sound].play();
-      };
+ 
 
     render() {
         return <div className="simon" >
