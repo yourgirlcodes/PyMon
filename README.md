@@ -4,6 +4,19 @@ PYmon is an online multiplayer version of the famous Hasbro game simon
 
 ![simon sketch](http://lh3.googleusercontent.com/qXdmXKyRLzxf0SspNm8QBsOSsXUoDADTo-3q-zLf0kd3qdk2P9fXsoeg-wV7b8cW0MXt6yVktsFrWsJZ2Q6OS6u4=s200)
 
+### The game flow:
+
+1. Players click on an "open" game (open for players to join)
+2. As long as the game status is open other players can join.
+3. Clicking the "play" button will play the sequence once
+4. After all players listened to the sequence the game status changes to "on" (from now other players can join as viewers)
+5. The first player who joined the game will get the turn
+6. On each turn the player should click the next color of the sequence (one guess per turn)
+7. If you failed, you are out.
+8. If you are correct the turn goes to the next player
+9. If the sequence is finished all remaining players are considered winners
+
+
 ## Built With
 
 * [Bottle (Python)](https://bottlepy.org/docs/dev/) - The web framework used
@@ -35,7 +48,7 @@ Clone the project and make sure you have all of the tools below installed.
 2. cd into the folder.
 3. clone this repository
     ```
-    git clone https://github.com/navotgil/pymon
+    git clone https://gitlab.com/itc-bootcamp/assignment12-pymon.git
     ```
 4. run pip and install the required libraries
     ```
@@ -150,6 +163,9 @@ AND GET THE JOB DONE!
     * **description:** allow users to go back to the /games page
     * **design:** total freedom
     * **constraints:** Add React component "BackBtn"
+* Fix Bug - player can press more than one button per turn
+    * **description:** This is against the rules, we need to somehow block the user from being able to do that
+    * **constraints:** use media queries
 * Implement a more impressive "Game Over"/"Game Won" prompt
     * **description:** currently there are none, try to make something nice...
     * **design:** total freedom
@@ -168,6 +184,10 @@ AND GET THE JOB DONE!
     * **description:** currently the project runs Pyhton 2.7.x
     update the project and make sure all third party libraries works.
     Also verify deploying to Heroku is not borken.
+* Limit the number of players per game to be less than the number of steps in the sequence
+    * **description:** If there are more players than steps in the sequence the last players to join will win without playing.
+    don't allow a player to join a "full" game
+    * **constraints:** total freedom (follow application structure)
 * Implement delete button for game in the /games page
     * **description:** users should be able to delete old games
     * **design:** show the delete button only for games the user can delete
@@ -182,4 +202,4 @@ AND GET THE JOB DONE!
 * Find and fix any bug
 * Add some missing features of your own
 
-## Enjoy!
+# Enjoy!
