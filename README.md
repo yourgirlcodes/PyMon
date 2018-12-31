@@ -80,8 +80,8 @@ CREATE TABLE `game` (
   `name` varchar(30) NOT NULL,
   `status` varchar(30) DEFAULT 'open',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `sequence` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `creator` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'anonymous',
+  `sequence` varchar(100) NOT NULL,
+  `creator` varchar(30) NOT NULL DEFAULT 'anonymous',
   `step` int(11) NOT NULL DEFAULT '0'
 ) ;
 
@@ -96,7 +96,7 @@ CREATE TABLE `player` (
 CREATE TABLE `playergame` (
   `game` int(11) NOT NULL,
   `player` varchar(30) NOT NULL,
-  `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'new',
+  `status` varchar(30) NOT NULL DEFAULT 'new',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ;
 

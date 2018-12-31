@@ -3,9 +3,9 @@ import pymysql
 
 # Connect to the database
 connection = pymysql.connect(host='db4free.net',
-                             user='<your user>',
-                             password='<your password>',
-                             db='<your db>',
+                             user='lotemhiki_1',
+                             password='dama2020',
+                             db='pymon_1',
                              charset='utf8',
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
@@ -15,7 +15,7 @@ def getCursor(sql):
     try:
         with connection.cursor() as cursor:
             result = cursor.execute(sql)
-    except Exception, e:
+    except Exception as e:
         print(repr(e))
         pass
     return result
@@ -27,7 +27,7 @@ def queryAll(sql):
         with connection.cursor() as cursor:
             cursor.execute(sql)
             result = cursor.fetchall()
-    except Exception, e:
+    except Exception as e:
         print(repr(e))
         pass
     return result
@@ -39,7 +39,7 @@ def queryOne(sql):
         with connection.cursor() as cursor:
             cursor.execute(sql)
             result = cursor.fetchone()
-    except Exception, e:
+    except Exception as e:
         print(repr(e))
         pass
     return result
@@ -49,7 +49,7 @@ def updateOrInsert(sql):
     try:
         with connection.cursor() as cursor:
             success = cursor.execute(sql)
-    except Exception, e:
+    except Exception as e:
         print(repr(e))
         pass
     return success
