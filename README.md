@@ -165,7 +165,6 @@ AND GET THE JOB DONE!
     * **constraints:** Add React component "BackBtn"
 * Fix Bug - player can press more than one button per turn
     * **description:** This is against the rules, we need to somehow block the user from being able to do that
-    * **constraints:** use media queries
 * Implement a more impressive "Game Over"/"Game Won" prompt
     * **description:** currently there are none, try to make something nice...
     * **design:** total freedom
