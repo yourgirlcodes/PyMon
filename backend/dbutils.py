@@ -3,10 +3,10 @@ import pymysql
 
 # Connect to the database
 
-connection = pymysql.connect(host='localhost',
-                             user='root', #adjust this to your personal settings
-                             db='pymon',
-                             password='', #adjust this to your personal settings
+connection = pymysql.connect(host='db4free.net',
+                             user='cefi93', #adjust this to your personal settings
+                             db='ourgroup',
+                             password='wearethebest', #adjust this to your personal settings
                              charset='utf8',
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
