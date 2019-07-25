@@ -2,6 +2,7 @@ from bottle import (Bottle, get, post, put, redirect, request, response, jinja2_
 import json
 from backend import utils
 from backend import controller
+from backend import page_handlers
 
 app = Bottle()
 
@@ -46,3 +47,7 @@ def create():
 @jinja2_view('./backend/pages/404.html')
 def error404(error):
     return {"version" : utils.getVersion()}
+
+@app.get('/winners')
+def create():
+    page_handlers.winners
