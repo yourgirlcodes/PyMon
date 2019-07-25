@@ -4,9 +4,9 @@ import pymysql
 # Connect to the database
 
 connection = pymysql.connect(host='localhost',
-                             user='root',
+                             user='root', #adjust this to your personal settings
                              db='pymon',
-                             password='CoeZohen!12345',
+                             password='', #adjust this to your personal settings
                              charset='utf8',
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
