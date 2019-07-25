@@ -20,7 +20,3 @@ def get_favicon():
 @staticHandler.get("/sounds/<filepath:re:.*\.mp3>")
 def mp3(filepath):
     return static_file(filepath, root="./frontend/sounds")
-
-@staticHandler.get("/js/<filepath:re:.*\.js>")
-def js(filepath):
-    return static_file(filepath, root="./frontend/dist")
