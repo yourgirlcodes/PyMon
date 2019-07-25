@@ -84,3 +84,7 @@ def wrongTurn(game_id, player_id):
 def win(game_id, newStep):
     db.updateGameStatusAndStep(game_id, "won", newStep)
     return db.updateWonPlayers(game_id)
+
+
+def winners():
+    return db.ten_winners()
