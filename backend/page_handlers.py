@@ -36,3 +36,9 @@ def play(game_id):
 @jinja2_view('./backend/pages/index.html')
 def landing():
     return {"version" : utils.getVersion()}
+
+
+@pageHandler.get('/winners')
+@jinja2_view('./backend/pages/winners.html')
+def winners():
+    return {"version": utils.getVersion(), "winners": controller.winners()}
