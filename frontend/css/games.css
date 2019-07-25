@@ -181,3 +181,7 @@ nav{
     font-family: Arial;
     color: #999;
 }
+
+.hidden{
+    display: none;
+}
