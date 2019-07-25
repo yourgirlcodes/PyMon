@@ -51,3 +51,9 @@ def getNextPlayer(game_id, last_player):
 
 def updateWonPlayers(game_id):
     return dbutils.updateOrInsert("UPDATE playergame SET status = 'won'  WHERE game = '{}' AND status <> 'failed'".format(game_id))
+
+
+def ten_winners():
+    winners = dbutils.queryOne("SELECT player, count(*) FROM playergame group by player ")
+    print(winners)
+    return winners
