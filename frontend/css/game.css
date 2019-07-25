@@ -1,7 +1,15 @@
+
 .main{
     display:flex;
     height: 100vh;
 }
+@media only screen and (max-width: 800px) {
+    .main {
+        flex-direction: column;
+    }
+  }
+  
+
 
 .players{
     flex:1;
@@ -107,6 +115,13 @@
     margin:auto;
     box-shadow: 10px 10px 53px -15px rgba(0,0,0,0.75);
 }
+@media only screen and (max-width: 800px) {
+
+    .simon{
+        height: 50vh;
+        width: 50vw;
+    }
+  }
 
 .simon .light-btn.disabled{
     cursor: default;
@@ -167,6 +182,12 @@
     width: 15vw;
     background-color: whitesmoke;
 }
+@media only screen and (max-width: 800px) {
+    .side{
+        height: 20%;
+        width: 100%;
+    }
+  }
 
 .game-name{
     background-color: #333;
