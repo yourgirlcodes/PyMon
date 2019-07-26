@@ -1,4 +1,5 @@
 from backend import dbutils
+import json
 
 def getAllGames():
     return dbutils.queryAll("SELECT * FROM game")
@@ -53,3 +54,14 @@ def getNextPlayer(game_id, last_player):
 
 def updateWonPlayers(game_id):
     return dbutils.updateOrInsert("UPDATE playergame SET status = 'won'  WHERE game = '{}' AND status <> 'failed'".format(game_id))
+
+
+def ten_winners():
+    winners = dbutils.queryAll("""SELECT player, count(*) as c FROM playergame WHERE
+                               status = 'won'
+                               GROUP BY player
+                               ORDER BY c desc
+                               limit 10""")
+    print(winners)
+    return winners
+

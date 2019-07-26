@@ -1,0 +1,28 @@
+{% extends "./backend/pages/base.html" %}
+{% block title %} Games{% endblock %}
+{% block head %}
+<link href="/css/games.css?v={{version}}" rel="stylesheet">
+{% endblock %}
+{% block app %}
+<div class="page">
+<header>
+<h1 > The Winners</h1>
+</header>
+<main class="game-list">
+{% for w in winners %}
+    <a class="game shadowed {{w.player}}" href="">
+        <div class="ribbon"><span>{{w.c}}</span></div>
+        <img src="/images/winners.jpg">
+        <div class="game-bottom" >
+            {{w.player}}
+        </div>
+    </a>
+{% else %}
+    <div class="no-games">No available winners :(</div>
+{% endfor %}
+</main>
+<footer>
+
+</footer>
+</div>
+{% endblock %}
