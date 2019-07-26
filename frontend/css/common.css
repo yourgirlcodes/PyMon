@@ -70,7 +70,6 @@ ul{
     transition: opacity 1s ease-in-out;
     animation-iteration-count: infinite;
 }
-
 /* loader */
 .lds-ellipsis {
     display: inline-block;
@@ -127,3 +126,22 @@ ul{
       transform: translate(19px, 0);
     }
   }
+
+.player-avatar{
+    height: 24px;
+}
+
+.center > h1{
+    position: absolute;
+    top: 40%;
+    color: azure;
+    outline: black;
+    box-shadow: 5px black;
+    font-size: 50px;
+    text-shadow: 2px 2px #ff0000;
+}
+
+.center > img{
+    max-width: 100%;
+    max-height: 80%;
+}

@@ -5,7 +5,7 @@ export function getGameId(){
 
 //A wrapper for contacting the server (currently using vanilla fetch)
 export function ajax(url, options, callbackFunc){
-    fetch(url, options).then(function(response) { 
+    fetch(url, options).then(function(response) {
         return response.json();
     }).then(function(respJson) {
         if (callbackFunc !== undefined){
