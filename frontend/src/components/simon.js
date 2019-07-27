@@ -9,6 +9,8 @@ export default class Simon extends React.Component {
         this.state = {activeBtn:"none", sequenceStep:0};
         this.sounds = {};
         BUTTONS.map(b => {
+            // Hi Yoav-- I hosted our audio files on cdn77.com and it was working on Thursday
+            // but as of Sat night, they're suspending my account until I purchase a monthly plan 
             this.sounds[b] = new Audio(`https://1244218580.rsc.cdn77.org/sounds/${b}.mp3`);
         });
     }
