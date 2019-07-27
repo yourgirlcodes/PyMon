@@ -5,6 +5,6 @@ export default class BackBtn extends React.Component {
         super(props); 
     }
     render(){
-       return <button className="backBtn" onClick={() => location.replace("http://localhost:5000/games")}>back</button>;
+       return <button className="backBtn" onClick={() => location.replace("http://localhost:5001/games")}>back</button>;
     }
 }
