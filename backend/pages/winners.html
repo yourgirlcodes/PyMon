@@ -6,29 +6,23 @@
 {% block app %}
 <div class="page">
 <header>
-<h1 > winners:</h1>
-{% if winners|length > 0 %}
-<!--<nav><span class="filter clickable">All</span> | <span class="filter clickable">Open</span> | <span class="filter clickable">Won</span> | <span class="filter clickable" >Failed</span></nav>-->
-{% endif %}
+<h1 > The Winners</h1>
 </header>
 <main class="game-list">
 {% for w in winners %}
-    <a class="game shadowed {{w}}" href="">
-        <div class="ribbon"><span>{{w}}</span></div>
-        <div class="game-bottom">
-            {{w}}
+    <a class="game shadowed {{w.player}}" href="">
+        <div class="ribbon"><span>{{w.c}}</span></div>
+        <img src="/images/winners.jpg">
+        <div class="game-bottom" >
+            {{w.player}}
         </div>
     </a>
 {% else %}
-    <div class="no-games">No available players :(</div>
+    <div class="no-games">No available winners :(</div>
 {% endfor %}
 </main>
 <footer>
-<!--    <form method="POST" action="/games">-->
-<!--        <h3>New Game</h3>-->
-<!--        <label>Name:<input type="text" name="name" required></label>-->
-<!--        <input type="submit" class="clickable" value="Create" />-->
-<!--    </form>-->
+
 </footer>
 </div>
 {% endblock %}

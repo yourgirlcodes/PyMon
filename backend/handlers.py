@@ -2,6 +2,7 @@ from bottle import (Bottle, get, post, put, redirect, request, response, jinja2_
 import json
 from backend import utils
 from backend import controller
+from backend import page_handlers
 
 app = Bottle()
 
@@ -33,7 +34,8 @@ def turnHandler(game_id):
 @app.post('/players')
 def newPlayerHandler():
     playerName = request.forms.get("name")
-    controller.createPlayer(playerName)
+    avatar = request.forms.get("avatar")
+    controller.createPlayer(playerName, avatar)
     response.set_cookie("player", playerName, None, max_age=3600000, path='/')
     redirect("/games")
 
@@ -46,3 +48,7 @@ def create():
 @jinja2_view('./backend/pages/404.html')
 def error404(error):
     return {"version" : utils.getVersion()}
+
+@app.get('/winners')
+def create():
+    page_handlers.winners

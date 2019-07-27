@@ -44,3 +44,19 @@ input{
     outline:none;
     color:#333;
 }
+.avatar{
+    width: 50px;
+}
+
+.game-message .won{
+    color: green;
+    background-color: yellow;
+    font-size: 26px;
+    border-radius: 50%;
+}
+.game-message .lost{
+    color: red;
+    background-color: yellow;
+    font-size: 26px;
+    border-radius: 50%;
+}
