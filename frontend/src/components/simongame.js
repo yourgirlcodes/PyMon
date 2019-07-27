@@ -36,7 +36,6 @@ export default class SimonGame extends React.Component {
                     <Simon  sequence={this.state.game.sequence} disabled={this.state.user.status != "turn"} showPlayBtn={this.state.user.status == "new"}/>
                     <Sequence sequence={this.state.game.sequence} step={this.state.game.step} />
                 </div>
-                                    <BackBtn />
 
                 <div className="side">
                     <div className="game-name">{this.state.game.name}</div>
