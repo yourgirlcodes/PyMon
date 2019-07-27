@@ -3,7 +3,6 @@ import {BUTTONS} from "../config"
 import SimonBtn from "./button"
 import {getGameId, ajax} from "../utils"
 
-
 export default class Simon extends React.Component {
     constructor(props){
         super(props);
