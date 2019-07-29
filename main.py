@@ -8,5 +8,5 @@ from backend.page_handlers import pageHandler
 
 app.merge(staticHandler)
 app.merge(pageHandler)
-run(app, host='0.0.0.0', port=(process.env.PORT | 5002))
+run(app, host='localhost', port=os.environ.get('PORT', 5000))
 
