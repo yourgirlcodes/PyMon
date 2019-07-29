@@ -3,14 +3,15 @@ import {BUTTONS} from "../config"
 import SimonBtn from "./button"
 import {getGameId, ajax} from "../utils"
 
-
 export default class Simon extends React.Component {
     constructor(props){
         super(props);
         this.state = {activeBtn:"none", sequenceStep:0};
         this.sounds = {};
         BUTTONS.map(b => {
-            this.sounds[b] = new Audio(`/sounds/${b}.mp3`);
+            // Hi Yoav-- I hosted our audio files on cdn77.com and it was working on Thursday
+            // but as of Sat night, they're suspending my account until I purchase a monthly plan 
+            this.sounds[b] = new Audio(`https://1244218580.rsc.cdn77.org/sounds/${b}.mp3`);
         });
     }
 

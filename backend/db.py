@@ -22,11 +22,13 @@ def updateGameStep(game_id, new_step):
 def getGamePlayers(game_id):
     return dbutils.queryAll("SELECT * FROM playergame where game = {} ORDER BY created".format(game_id))
 
-def newPlayer(player_name):
-    return dbutils.updateOrInsert("INSERT INTO player (id) VALUES ('{}')".format(player_name))
+def newPlayer(player_name, avatar):
+    return dbutils.updateOrInsert("INSERT INTO player (id, avatar) VALUES ('{}', '{}')".format(player_name, avatar))
 
 def joinGame(game_id, player_id):
-    return dbutils.updateOrInsert("INSERT INTO playergame (game, player) VALUES ('{}', '{}')".format(game_id, player_id))
+    avatar = dbutils.queryOne("SELECT avatar FROM player WHERE id=('{}')".format(player_id))
+    avatar = avatar['avatar']
+    return dbutils.updateOrInsert("INSERT INTO playergame (game, player, avatar) VALUES ('{}', '{}', '{}')".format(game_id, player_id, avatar))
 
 def updatePlayerStatus(game_id, player_id, status):
     return dbutils.updateOrInsert("UPDATE playergame SET status = '{}' WHERE game = '{}' AND player='{}'".format(status, game_id, player_id))

@@ -1,39 +1,48 @@
 import React from "react";
-import {getGameId, ajax} from "../utils"
+import { getGameId, ajax } from "../utils"
 import Loader from "./loader"
 
 export default class Players extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {joinClicked:false};
+        this.state = { joinClicked: false, message: "Join!" };
     }
 
-    join(){
-        if (this.state.joinClicked){
-            return;
+    join() {
+        let playerz = this.props.players.length;
+        console.log('yay');
+        if (playerz > 5) {
+            this.setState({
+                message: 'This game is full'
+            })
+        } else {
+            if (this.state.joinClicked) {
+                return;
+            }
+            this.setState(() => ({
+                joinClicked: true
+            }), () => {
+                ajax(`/games/${getGameId()}/players`, { method: 'POST' });
+            });
         }
-        this.setState(() => ({
-            joinClicked:true
-        }), () => { 
-            ajax(`/games/${getGameId()}/players`,{method: 'POST'});
-        });
     }
 
     render() {
         return <div className="players">
             <h3>Players</h3><ul className="players">
-            {this.props.showJoinBtn &&
-            <button className={`join-btn ${(this.state.joinClicked) ? "loading" : ""}`} onClick={this.join.bind(this)}>
-            {(this.state.joinClicked) ? <Loader />: "Join!" }
-            </button>
-            }
-            {this.props.players.map(k => (
-                <li key={k.player} className="player" >
-                <span className="player-name">{k.player} {(k.player === this.props.userName) ? "(you)":""}</span>
-                <span className={`player-status ${k.status}`}>{k.status}</span>
-                </li>
-            ))}
+                {this.props.showJoinBtn &&
+                    <button className={`join-btn ${(this.state.joinClicked) ? "loading" : ""}`} onClick={this.join.bind(this)}>
+                        {(this.state.joinClicked) ? <Loader /> : this.state.message}
+                    </button>
+                }
+                {this.props.players.map(k => (
+                    <li key={k.player} className="player" >
+                        <img className="player-avatar" src={`/images/${k.avatar}.jpg`} />
+                        <span className="player-name">{k.player} {(k.player === this.props.userName) ? "(you)" : ""}</span>
+                        <span className={`player-status ${k.status}`}>{k.status}</span>
+                    </li>
+                ))}
             </ul>
-            </div>
+        </div>
     }
 }
